@@ -15,6 +15,7 @@ double rY=0;
 struct Punto{
     GLfloat x;
     GLfloat y;
+    GLfloat z;
 };
 
 std::vector<struct Punto> puntos;
@@ -25,30 +26,25 @@ std::vector<struct Punto> rotacion;
 
 void generarPuntos(){
     struct Punto tmp;
-    float x,y;
-    for(float t = 0; t < 1; t = t+0.001){
-        x = (2*pow(t,2))+2*t+1;
-        y = -(4*pow(t,2))+6*t+1;
-        tmp.x = (GLfloat) x;
-        tmp.y = (GLfloat) y;
-        puntos.push_back(tmp);
-    }
+    float x,y,z;
 }
 
-void trasladar(float tx, float ty){
+void trasladar(float tx,float ty,float tz){
     struct Punto tmp;
     for(int i = 0; i < puntos.size(); i++){
         tmp.x = (GLfloat)(puntos[i].x+tx);
         tmp.y = (GLfloat)(puntos[i].y+ty);
+        tmp.z = (GLfloat)(puntos[i].z+tz);
         traslacion.push_back(tmp);
     }
 }
 
-void escalar(float sx, float sy){
+void escalar(float sx,float sy,float sz){
     struct Punto tmp;
     for(int i = 0; i < puntos.size(); i++){
         tmp.x = (GLfloat)(puntos[i].x*sx);
         tmp.y = (GLfloat)(puntos[i].y*sy);
+        tmp.y = (GLfloat)(puntos[i].z*sz);
         escala.push_back(tmp);
     }
 }
@@ -115,9 +111,9 @@ void keyboard(int key, int x, int y){
 
 int main(int argc, char **argv){
     generarPuntos();
-    rotar(56);
-    escalar(12,40);
-    trasladar(12,34);
+    //rotar(56);
+    //escalar(12,40);
+    //trasladar(12,34);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800,800);
